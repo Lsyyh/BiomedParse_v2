@@ -578,11 +578,28 @@ async def root():
 
 
 if __name__ == "__main__":
+    import argparse
     import uvicorn
+
+    parser = argparse.ArgumentParser(description="BiomedParse Segmentation Service")
+    parser.add_argument(
+        "--port",
+        type=int,
+        default=int(os.environ.get("PORT", 8000)),
+        help="Service port (default: 8000, or PORT env var)",
+    )
+    parser.add_argument(
+        "--host",
+        type=str,
+        default=os.environ.get("HOST", "0.0.0.0"),
+        help="Service host (default: 0.0.0.0, or HOST env var)",
+    )
+    args = parser.parse_args()
+
     uvicorn.run(
         "biomedparse_segmentation_service:app",
-        host="0.0.0.0",
-        port=8000,
+        host=args.host,
+        port=args.port,
         reload=False,
-        workers=1
+        workers=1,
     )

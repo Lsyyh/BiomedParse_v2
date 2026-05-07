@@ -118,6 +118,7 @@ Config/*
 
 # ===== Claude Code =====
 .claude/
+MEDAGENT_USAGE.md
 
 # ===== OS files =====
 .DS_Store
